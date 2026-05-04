@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class InteractionArea : MonoBehaviour
 {
+    public ScoreUIManager scoreUIMgr;
+
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log("Hubo colisión");
+        if(col.gameObject.CompareTag("Pickable"))
+        {
+            Debug.Log("Hubo colisión con un Pickable");
+            Destroy(col.gameObject);
+            scoreUIMgr.AddPointAndUpdateScoreUI();
+        }
     }
 }
